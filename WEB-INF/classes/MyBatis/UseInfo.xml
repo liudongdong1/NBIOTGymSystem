@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gym.dao.UseInfoDao">
+    <select id="getAllUseInfo" resultType="com.gym.bean.UseInfo">
+        select * from UseInfo_list
+    </select>
+    <select id="findUseInfoByser_num" resultType="com.gym.bean.UseInfo" parameterType="long">
+        select * from UseInfo_list where ser_num = #{ser_num}
+    </select>
+    <delete id="deleteUseInfo" parameterType="long">
+        delete from UseInfo_list where ser_num = #{ser_num}
+    </delete>
+    <update id="editUseInfo" parameterType="com.gym.bean.UseInfo">
+        update UseInfo_list set member_id = #{member_id} , instr_id = #{instr_id},begin_date = #{begin_date} ,end_date=#{end_date},
+        sensor_info = #{sensor_info}
+        where ser_num = #{ser_num}
+    </update>
+    <insert id="addUseInfo" parameterType="com.gym.bean.UseInfo">
+        insert into UseInfo_list values
+        (null, #{member_id},#{instr_id},#{begin_date},#{end_date},#{sensor_info})
+    </insert>
+    <select id="getAllUseInfoByMemberID" resultType="com.gym.bean.UseInfo" parameterType="long">
+        select * from UseInfo_list where member_id = #{member_id}
+    </select>
+    <select id="getAllUseInfoByInstr_id" resultType="com.gym.bean.UseInfo" parameterType="long">
+        select * from UseInfo_list where instr_id = #{instr_id}
+    </select>
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gym.dao.Instr_FixInforDao">
+    <select id="getAllInstr_FixInforInfo" resultType="com.gym.bean.Instr_FixInfor">
+        select * from instr_fixlist
+    </select>
+    <select id="findInstr_FixInforByfix_id" resultType="com.gym.bean.Instr_FixInfor" parameterType="long">
+        select * from instr_fixlist where fix_id = #{fix_id}
+    </select>
+    <delete id="deleteInstr_FixInfor" parameterType="long">
+        delete from instr_fixlist where fix_id = #{fix_id}
+    </delete>
+    <update id="editInstr_FixInfor" parameterType="com.gym.bean.Instr_FixInfor">
+        update instr_fixlist set instr_id = #{instr_id},fix_date = #{fix_date} ,
+        fix_reason = #{fix_reason}
+        where fix_id = #{fix_id}
+    </update>
+    <insert id="addInstr_FixInfor" parameterType="com.gym.bean.Instr_FixInfor">
+        insert into instr_fixlist values
+        (null, #{instr_id},#{fix_date},#{fix_reason})
+    </insert>
+</mapper>

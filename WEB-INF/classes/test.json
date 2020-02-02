@@ -1,0 +1,1 @@
+{ "notifyType": "deviceDataChanged", "requestId": "6c3c60f0-f1cb-d23f-bbf7-46152a726aea_9362", "deviceId": "01006f25-ab60-4a7e-8b0a-6dcfa15e43cc", "gatewayId": "0010256458", "service": "DeviceService", "DeviceService": { "serviceId": "Brightness", "serviceType": "Brightness", "data": { "brightness": "80" }, "eventTime": "20170311T163657Z", "serviceInfo": "null" } }

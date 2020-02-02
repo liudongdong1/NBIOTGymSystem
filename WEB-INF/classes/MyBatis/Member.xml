@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gym.dao.MemberDao">
+    <select id="getAllMemberInfo" resultType="com.gym.bean.Member">
+        select * from Member_info
+    </select>
+    <select id="findMemberByMemberId" resultType="com.gym.bean.Member" parameterType="long">
+        select * from Member_info where member_id = #{member_id}
+    </select>
+    <select id="getMemberByName" resultType="com.gym.bean.Member" parameterType="String">
+        select * from Member_info where name = #{name}
+    </select>
+    <delete id="deleteMember" parameterType="long">
+        delete from Member_info where member_id = #{member_id}
+    </delete>
+    <update id="editMember" parameterType="com.gym.bean.Member">
+        update Member_info set name = #{name} , sex = #{sex},birth = #{birth} ,registor_date=#{registor_date},
+        address = #{address} ,phone = #{phone}
+        where member_id = #{member_id}
+    </update>
+    <update id="editMemberPsswd" parameterType="com.gym.bean.Member">
+        update MemberPssw_card set username = #{name}
+        where member_id = #{member_id}
+    </update>
+    <insert id="addMember" parameterType="com.gym.bean.Member">
+        insert into Member_info values
+        (null, #{name},#{sex},#{birth},#{registor_date},#{address},#{phone})
+    </insert>
+    <select id="getMemberId" resultType="long" parameterType="com.gym.bean.Member">
+        select member_id from Member_info where
+        name = #{name} and sex = #{sex} and
+        birth = #{birth} and registor_date=#{registor_date} and address = #{address}
+        and phone = #{phone}
+    </select>
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gym.dao.MemberPsswdDao">
+    <select id="getIdMatchCount" resultType="int">
+        select count(*) from MemberPssw_card where
+        member_id = #{member_id} and password = #{password}
+    </select>
+    <select id="findMemberPsswByMemberId" resultType="com.gym.bean.MemberPssw" parameterType="long">
+        select * from MemberPssw_card where member_id = #{member_id}
+    </select>
+    <update id="resetPassword">
+        update MemberPssw_card set password = #{password}
+        where member_id = #{member_id}
+    </update>
+    <select id="getPassword" resultType="String" parameterType="long">
+        select password from MemberPssw_card where member_id = #{member_id}
+    </select>
+    <insert id="addMemberPssw">
+        insert into MemberPssw_card values
+        (#{member_id}, #{username}, #{password})
+    </insert>
+    <delete id="deleteMemberPssw" parameterType="long">
+        delete from MemberPssw_card where member_id = #{member_id}
+    </delete>
+</mapper>

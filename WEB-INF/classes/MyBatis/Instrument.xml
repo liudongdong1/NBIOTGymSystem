@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gym.dao.InstrumentDao">
+    <select id="getAllInstrumentInfo" resultType="com.gym.bean.Instrument">
+        select * from instrument_info
+    </select>
+    <select id="findInstrumentByInstrumentId" resultType="com.gym.bean.Instrument" parameterType="long">
+        select * from instrument_info where instr_id = #{instrument_id}
+    </select>
+    <delete id="deleteInstrument" parameterType="long">
+        delete from instrument_info where instr_id = #{instrument_id}
+    </delete>
+    <update id="editInstrument" parameterType="com.gym.bean.Instrument">
+        update instrument_info set name = #{name} , price = #{price},quantity = #{quantity} ,order_date=#{order_date},
+        description = #{description} ,class_id = #{class_id}
+        where instr_id = #{instr_id}
+    </update>
+    <insert id="addInstrument" parameterType="com.gym.bean.Instrument">
+        insert into instrument_info values
+        (null, #{name},#{price},#{order_date},#{quantity},#{class_id},#{description})
+    </insert>
+    <select id="getInstrumentId" resultType="long" parameterType="com.gym.bean.Instrument">
+        select Instrument_id from instrument_info where
+        name = #{name} and price = #{price} and
+        quantity = #{quantity} and order_date=#{order_date} and description = #{description}
+        and class_id  = #{class_id}
+    </select>
+    <select id="matchInstrument" resultType="int" parameterType="String">
+        select count(*) from instrument_info where name like #{search}
+        or description like #{search} or class_id  like #{search}
+    </select>
+    <select id="queryInstrument" resultType="com.gym.bean.Instrument" parameterType="String">
+        select * from instrument_info where name like #{search}
+        or description like #{search} or class_id  like #{search}
+    </select>
+</mapper>
